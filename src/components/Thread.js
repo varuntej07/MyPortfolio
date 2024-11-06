@@ -18,8 +18,8 @@ const Thread = () => {
             const newLength = threadLength + (e.clientY - initialY.current) / 2;
             setThreadLength(Math.min(Math.max(newLength, 50), 200));
 
-            // Toggle theme when thread is stretched beyond threshold
-            if (newLength > 150) {
+            // Toggles theme when thread is stretched beyond threshold
+            if (newLength > 100) {
                 toggleTheme();
             }
         }

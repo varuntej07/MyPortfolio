@@ -1,5 +1,6 @@
 import React from 'react';
 import './componentStyles.css';
+import { useTheme } from '../contexts/ThemeContext';
 
 const projects = [
     {
@@ -37,9 +38,12 @@ const projects = [
 ];
 
 const Projects = () => {
+
+    const { isDarkMode } = useTheme();
+
     return (
-        <div id="projects">
-            <h1>Projects</h1>
+        <div className={`homepage ${isDarkMode ? 'dark' : ''}`}>
+            <h1 className='project-title'>Projects</h1>
             <div className='project-cards'>
                 {projects.map((project, index) => (
                     <div className='project-card' key={index}>
