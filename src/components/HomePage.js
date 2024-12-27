@@ -1,5 +1,5 @@
 import React from 'react';
-import './componentStyles.css';
+import './Styles/HomePageStyles.css';
 import { useTheme } from '../contexts/ThemeContext';
 import Thread from './Thread';
 

@@ -1,0 +1,134 @@
+/* Variables and Base Styles */
+:root {
+    /* Light mode colors */
+    --primary-color: #f0f4f8;
+    --secondary-color: #dbe4ff;
+    --text-color: #2d3748;
+    --background-color: #ffffff;
+    --button-hover: #4c63b6;
+    --accent-color: #4263eb;
+    --accent-color-dark: #364fc7;
+    --card-bg: rgba(255, 255, 255, 0.9);
+}
+
+.dark {
+    /* Dark mode colors */
+    --primary-color: #0a0b0e;
+    --secondary-color: #1a1b1e;
+    --text-color: #e2e8f0;
+    --background-color: #292938;
+    --button-hover: #4a5568;
+    --accent-color: #81e6d9;
+    --accent-color-dark: #4fd1c5;
+    --card-bg: rgba(26, 27, 30, 0.95);
+}
+
+/* Reset and Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden; /* Preventing horizontal scroll */
+}
+
+/* Layout Components */
+.homepage,
+.projects-section,
+.contact-section {
+    background-color: var(--primary-color);
+    min-height: 100vh;
+    width: 100%;
+    transition: background-color 0.5s ease;
+    position: relative; /* For proper stacking */
+}
+
+/* Thread Animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes swing {
+    0%, 100% {
+        transform: rotate(-3deg);
+    }
+
+    50% {
+        transform: rotate(3deg);
+    }
+}
+
+/* Thread Styles */
+.thread-container {
+    position: fixed;
+    top: 0;
+    left: 20px;
+    z-index: 1000;
+    animation: swing 3s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+.thread {
+    width: 2px;
+    background-color: var(--text-color);
+    transition: height 0.3s;
+    position: relative;
+}
+
+.thread-weight {
+    position: absolute;
+    bottom: -10px;
+    left: -4px;
+    width: 12px;
+    height: 18px;
+    background-color: var(--text-color);
+    border-radius: 50%;
+    cursor: grab;
+    animation: float 2s ease-in-out infinite;
+}
+
+    .thread-weight:active {
+        cursor: grabbing;
+    }
+
+/* Navigation */
+.nav-bar {
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+}
+
+    .nav-bar a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 18px;
+        padding: 5px 0;
+        position: relative;
+    }
+
+        .nav-bar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--text-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-bar a:hover::after {
+            width: 100%;
+        }

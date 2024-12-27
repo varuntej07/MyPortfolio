@@ -1,5 +1,6 @@
 import React from 'react';
-import './componentStyles.css';
+import { useState } from 'react';
+import './Styles/ProjectStyles.css';
 import { useTheme } from '../contexts/ThemeContext';
 
 const projects = [
@@ -32,30 +33,58 @@ const projects = [
                     Developed robust API methods for saving addresses and implementing search functionalities, allowing users to search addresses across one or two countries efficiently.
                     Seeded the database with diverse addresses reflecting population distributions using Faker.js.
                     Ensured the application supports at least 1000 concurrent requests (read, write, search) with response times under 75ms by using node-cache middleware and implementing partial address matching with regex patterns.`,
-        skills: 'MERN, Application Programming Interfaces(API), Client-Server Model, node-cache',
+        skills: 'MERN, API, Client-Server Model, node-cache',
         link: 'https://github.com/varuntej07/AddressArchitect'
-    }
+    },
 ];
 
 const Projects = () => {
+const { isDarkMode } = useTheme();
+const [startIndex, setStartIndex] = useState(0);
 
-    const { isDarkMode } = useTheme();
+const nextProjects = () => {
+    setStartIndex((prevIndex) => (prevIndex + 3) % projects.length);
+};
 
-    return (
-        <div className={`homepage ${isDarkMode ? 'dark' : ''}`}>
-            <h1 className='project-title'>Projects</h1>
-            <div className='project-cards'>
-                {projects.map((project, index) => (
-                    <div className='project-card' key={index}>
-                        <strong>{project.title}</strong>
-                        <p>{project.description}</p>
-                        <p>Skills: {project.skills}</p>
-                        <a href={project.link} target="_blank" rel='noreferrer'> link </a>
-                    </div>
-                ))}
-            </div>
-        </div>
+const prevProjects = () => {
+    setStartIndex((prevIndex) =>
+        prevIndex === 0 ? projects.length - (projects.length % 3 || 3) : prevIndex - 3
     );
+};
+
+const displayedProjects = projects.slice(startIndex, startIndex + 3);
+
+return (
+    <div className={`projects-container ${isDarkMode ? 'dark' : ''}`}>
+        <h1 className="project-title">Projects</h1>
+        <div className="project-grid">
+            {displayedProjects.map((project, index) => (
+                <div key={index} className="project-card">
+                    <h2>{project.title}</h2>
+                    <p>{project.description}</p>
+                    <div className="skills">
+                        {project.skills.split(',').map((skill, idx) => (
+                            <span key={idx} className="skill-tag">
+                                {skill.trim()}
+                            </span>
+                        ))}
+                    </div>
+                    <a href={project.link} className="project-link">
+                        View Project
+                    </a>
+                </div>
+            ))}
+        </div>
+        <div className="navigation-buttons">
+            <button onClick={prevProjects} className="nav-button">
+                &#8592;
+            </button>
+            <button onClick={nextProjects} className="nav-button">
+                &#8594;
+            </button>
+        </div>
+    </div>
+);
 };
 
 export default Projects;

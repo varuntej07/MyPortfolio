@@ -4,7 +4,10 @@ import Projects from './Projects';
 import HomePage from './HomePage';
 import Hero from './Hero';
 import { ThemeProvider } from '../contexts/ThemeContext';
-import './componentStyles.css';
+import './Styles/componentStyles.css';
+import './Styles/ContactStyles.css';
+import './Styles/HomePageStyles.css';
+import './Styles/ProjectStyles.css';
 
 const App = () => {
     return (

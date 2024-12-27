@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './componentStyles.css';
+import './Styles/ContactStyles.css';
 import { useTheme } from '../contexts/ThemeContext';
 
 const Contact = () => {
